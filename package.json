@@ -1,0 +1,35 @@
+{
+  "name": "pullgit",
+  "version": "0.1.0",
+  "description": "pullgit",
+  "keywords": [
+    "pull",
+    "git"
+  ],
+  "bin": {
+    "pullgit": "./bin/pullgit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/xudafeng/pullgit.git"
+  },
+  "dependencies": {
+    "xutil": "^1.0.10"
+  },
+  "devDependencies": {
+    "co-mocha": "*",
+    "eslint": "*",
+    "eslint-plugin-mocha": "^4.11.0",
+    "mocha": "*",
+    "istanbul": "*",
+    "pre-commit": "*"
+  },
+  "scripts": {
+    "ci": "npm run lint",
+    "lint": "eslint . --fix"
+  },
+  "pre-commit": [
+    "lint"
+  ],
+  "license": "MIT"
+}
