@@ -17,7 +17,7 @@
 [download-image]: https://img.shields.io/npm/dm/pullgit.svg?style=flat-square
 [download-url]: https://npmjs.org/package/pullgit
 
-> pullgit
+> An easy `git pull` & `git fetch -p`.
 
 ## Installment
 
