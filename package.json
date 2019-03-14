@@ -1,6 +1,6 @@
 {
   "name": "pullgit",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "pullgit",
   "keywords": [
     "pull",
@@ -17,11 +17,9 @@
     "xutil": "^1.0.10"
   },
   "devDependencies": {
-    "co-mocha": "*",
     "eslint": "*",
     "eslint-plugin-mocha": "^4.11.0",
     "mocha": "*",
-    "istanbul": "*",
     "pre-commit": "*"
   },
   "scripts": {
