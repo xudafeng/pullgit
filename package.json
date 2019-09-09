@@ -1,19 +1,20 @@
 {
   "name": "pullgit",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "pullgit",
   "keywords": [
     "pull",
     "git"
   ],
   "bin": {
-    "pullgit": "./bin/pullgit"
+    "pullgit": "./bin/pullgit.js"
   },
   "repository": {
     "type": "git",
     "url": "git://github.com/xudafeng/pullgit.git"
   },
   "dependencies": {
+    "moment": "^2.24.0",
     "xutil": "^1.0.10"
   },
   "devDependencies": {

@@ -5,7 +5,12 @@
 const fs = require('fs');
 const _ = require('xutil');
 const path = require('path');
+const moment = require('moment');
 const child_process = require('child_process');
+
+const { HOME } = process.env;
+
+const pullgitTmpFile = path.join(HOME, 'pullgit-result.json');
 
 const {
   chalk
@@ -19,6 +24,8 @@ const isGitProject = (directory) => {
   const gitPath = path.join(directory, '.git');
   return _.isExistedDir(gitPath);
 };
+
+const result = [];
 
 const traversal = root => {
   const list = fs.readdirSync(root);
@@ -43,6 +50,15 @@ const traversal = root => {
           cwd: dist
         });
         console.log(`${chalk.yellow(out2.stdout.toString().trim())}`);
+        const { ctime } = fs.statSync(dist);
+        result.push({
+          ctime,
+          dist
+        });
+        const res = result
+          .sort((a, b) => a.ctime - b.ctime)
+          .map(item => `${moment(item.ctime).format('YYYY.MM.DD hh:mm:ss')}|${item.dist}`);
+        fs.writeFileSync(pullgitTmpFile, JSON.stringify(res, null, 2));
       } catch (e) {
         console.log(e);
       }
