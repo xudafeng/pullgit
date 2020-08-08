@@ -7,10 +7,9 @@ const _ = require('xutil');
 const path = require('path');
 const moment = require('moment');
 const child_process = require('child_process');
+const homeDir = require('os').homedir();
 
-const { HOME } = process.env;
-
-const pullgitTmpFile = path.join(HOME, 'pullgit-result.json');
+const pullgitTmpFile = path.join(homeDir, 'pullgit-result.json');
 
 const {
   chalk
