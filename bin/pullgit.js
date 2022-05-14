@@ -8,6 +8,7 @@ const path = require('path');
 const moment = require('moment');
 const child_process = require('child_process');
 const homeDir = require('os').homedir();
+const argv = require('minimist')(process.argv.slice(2));
 
 const pullgitTmpFile = path.join(homeDir, 'pullgit-result.json');
 
@@ -26,18 +27,23 @@ const isGitProject = (directory) => {
 
 const result = [];
 
+function gitCheckoutMaster(dist) {
+  console.log(`git checkout master ${chalk.green(dist)}`);
+  const out0 = child_process.spawnSync('git', ['checkout', 'master'], {
+    cwd: dist
+  });
+  console.log(`${chalk.yellow(out0.stdout.toString().trim())}`);
+}
+
 const traversal = root => {
   const list = fs.readdirSync(root);
   list.forEach(item => {
     const dist = path.join(root, item);
     if (isGitProject(dist)) {
       try {
-        console.log(`git checkout master ${chalk.green(dist)}`);
-        const out0 = child_process.spawnSync('git', ['checkout', 'master'], {
-          cwd: dist
-        });
-        console.log(`${chalk.yellow(out0.stdout.toString().trim())}`);
-
+        if (argv.master) {
+          gitCheckoutMaster(dist);
+        }
         console.log(`git pull ${chalk.green(dist)}`);
         const out1 = child_process.spawnSync('git', ['pull'], {
           cwd: dist
